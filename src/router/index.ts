@@ -12,16 +12,14 @@ const router = createRouter({
 //路由全局前置守卫
 router.beforeEach((to, from) => {
   console.log("路由全局前置守卫", to, from)
-  return {
-    name: "login",
-  }
+  // 使用return代替next
+  // return {
+  //   name: "home",
+  // }
 })
 //路由全局后置守卫
 router.afterEach((to, from) => {
   console.log("路由全局后置守卫", to, from)
-  return {
-    name: "home",
-  }
 })
 
 export default router
