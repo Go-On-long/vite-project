@@ -1,8 +1,8 @@
 export const routes = [
   {
-    name: "home",
-    path: "/",
-    component: () => import("../components/HelloWorld.vue"),
+    name: 'login',
+    path: '/',
+    component: () => import('../layout/login.vue'),
     // component: () => import("../App.vue"),
     // children: [
     //     {
