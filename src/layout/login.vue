@@ -1,22 +1,32 @@
 <script setup lang="ts">
 import { useRouter } from 'vue-router'
-import loginApi from '../api/loginApi'
+// import loginApi from '../api/loginApi'
 import { ElMessage } from 'element-plus'
-
-const router = useRouter()
+import store from '../store/index'
+import { storeToRefs } from 'pinia'
+import utils from '../utils/index'
 
 interface User {
   username: String
   password: String
 }
 
+const router = useRouter()
+
+const countstore = store.useCountStore()
+
 const user: User = {
   username: '',
   password: '',
 }
 
+// 转化为ref避免解构赋值失去响应性
+const { counter } = storeToRefs(countstore)
+
 function submit(): void {
   if (user.username && user.password) {
+    utils.setUtils('wanglong')
+    ElMessage.success('登录成功')
     router.push('/home')
   } else alert('用户名或密码不可为空')
 }

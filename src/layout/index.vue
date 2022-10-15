@@ -3,7 +3,7 @@
     <el-container>
       <el-header>
         <el-menu
-          :default-active="'1'"
+          :default-active="0"
           class="el-menu-demo"
           mode="horizontal"
           background-color="#545c64"
@@ -11,14 +11,13 @@
           active-text-color="#ffd04b"
           @select="handleSelect"
         >
-          <el-menu-item index="1">
-            <router-link to="/Order">点餐</router-link>
-          </el-menu-item>
-          <el-menu-item index="2">
-            <router-link to="/OrderForm">订单</router-link>
-          </el-menu-item>
-          <el-menu-item index="3">
-            <router-link to="/UserCenter">个人中心</router-link>
+          <el-menu-item
+            v-for="(item, index) in title"
+            :key="index"
+            :index="index"
+            @click="routerPush(index)"
+          >
+            {{ item }}
           </el-menu-item>
         </el-menu>
       </el-header>
@@ -28,11 +27,19 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
+import { useRouter } from 'vue-router'
 
-// const handleSelect = (key: string, keyPath: string[]) => {
-//   console.log(key, keyPath)
-// }
+const title = ref<Array<String>>(['点餐', '订单', '个人中心'])
+const routes = ref<Array<String>>(['Order', 'OrderForm', 'UserCenter'])
+const router = useRouter()
+
+function routerPush(index: number): void {
+  router.push('/' + routes.value[index])
+}
+
+onMounted(() => {
+  // 默认跳转首页
+  routerPush(0)
+})
 </script>
-
-<style lang="less"></style>
