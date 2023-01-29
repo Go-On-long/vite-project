@@ -53,7 +53,7 @@ function submit(): void {
 </template>
 
 <style lang="less" scoped>
-@import url('../styles/style.less');
+@import url('../styles/index.less');
 .card {
   z-index: 2;
   background: #eddeee;

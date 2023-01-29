@@ -1,11 +1,7 @@
 <template>
   <div>
     <div class="search">
-      <el-input
-        v-model="input"
-        placeholder="搜索六个月内的外卖商超订单"
-        :prefix-icon="Search"
-      />
+      <el-input v-model="input" placeholder="搜索六个月内的外卖商超订单" :prefix-icon="Search" />
     </div>
     <div class="content" v-for="(item, index) in data" :key="index">
       <div class="head">
@@ -25,13 +21,19 @@
 </template>
 <script lang="ts" setup>
 import { ref } from 'vue'
-import { Search } from '@element-plus/icons-vue'
+
+interface Order {
+  name: String | undefined
+  state: String | undefined
+  pj: String | undefined
+}
+
 const input = ref<string>('')
-const data = ref<Array<Object>>([
+const data = ref<Array<Order>>([
   {
     name: '汉堡王(滨江餐厅)',
-    state: '已送达',
-    pj: '评价得欢乐豆',
+    state: '',
+    pj: '',
   },
   {
     name: '汉堡王(滨江餐厅)',
@@ -74,7 +76,6 @@ const data = ref<Array<Object>>([
     pj: '评价得欢乐豆',
   },
 ])
-
 </script>
 <style lang="less" scoped>
 .search {

@@ -29,12 +29,22 @@
 <script lang="ts" setup>
 import { onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
+import loginApi from '../api/loginApi'
+import { useRequest } from 'vue-request'
 
 const title = ref<Array<String>>(['点餐', '订单', '个人中心'])
 const routes = ref<Array<String>>(['Order', 'OrderForm', 'UserCenter'])
 const router = useRouter()
 
 function routerPush(index: number): void {
+  const url = ['www.bing.com', 'www.baidu.com', 'www.taobao.com']
+
+  useRequest(url[index], {
+    onSuccess: res => {
+      console.log(res)
+    },
+  })
+
   router.push('/' + routes.value[index])
 }
 
